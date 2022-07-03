@@ -1,7 +1,7 @@
 const solution = (text:string) => {
-	let longest: string = "";
-	for (let w of text){
-		if(w.length > longest){
-		}
-	}
+	const pat:RegExp = /[^a-z^A-Z]/;
+	const splitted:string [] = text.split(pat);
+	return splitted.reduce((a:string,b:string) => { return a.length > b.length ? a: b;});
 }
+
+console.log(solution("Ready[[[, steady, go!"));
