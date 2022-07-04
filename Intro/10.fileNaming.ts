@@ -1,18 +1,27 @@
 function solution(names:string[]): string[]{
-	let table:{[key:string]:number} = {};
-	let renamed:string[] = [];
-	for(let name of names){
-		if(name in table){
-			const occur:number = table[name];
-			renamed.push(name + "(" + (occur+1) + ")"); 
-			table[name]++;
-		}else{
-			console.log(name);
-			renamed.push(name);
-			table[name] = 0;
+	let seen:{[key:string]:number} = {};
+	let newName:string = "";
+	return names.map((name:string) => {
+		newName = name;
+		while(seen[newName]){
+			console.log(newName);
+			newName = `${name}(${seen[name]++})`;
 		}
-	}
-	return renamed;
+		seen[newName] =1;
+		return newName;
+	});
 }
 
-console.log(solution(["doc", "doc", "image", "doc(1)", "doc"]));
+const names:string[] = ["a(1)", 
+ "a(6)", 
+ "a", 
+ "a", 
+ "a", 
+ "a", 
+ "a", 
+ "a", 
+ "a", 
+ "a", 
+ "a", 
+ "a"];
+console.log(solution(names));
